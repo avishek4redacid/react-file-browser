@@ -1,0 +1,64 @@
+@import '~antd/dist/antd.css';
+
+html {
+    height: 100%
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito Sans', sans-serif;
+  background-color: white;
+}
+.MuiTypography-body1 {
+  font-family: 'Nunito Sans', sans-serif !important;
+}
+.top-bar {
+  display: flex;
+  height: 70px;
+  align-items: center;
+  background-color: #fff;
+}
+.search-bar {
+  width: 300px;
+  height: 35px;
+  background: #fff;
+  border: 0.6px solid #D5D5D5;
+  box-sizing: border-box;
+  border-radius: 19px;
+  margin-left: 20px;
+}
+.has-search{
+  margin-top:14px;
+}
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: inline;
+  margin-left: 30px;
+  margin-top: 10px;
+}
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+.ant-breadcrumb {
+  margin-left: 38px;
+}
+.ant-breadcrumb-separator {
+  padding: 0 10px 0px 10px;
+}
+.ant-breadcrumb-link {
+  color: #212529;
+}
+.item {
+  padding: 20px 0 0px 110px;
+}
+.anticon svg {
+  margin: -7px 5px 0px 0px;
+}
+.table-folder {
+  margin: 25px 0px 0px 25px;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #fff;
+}
