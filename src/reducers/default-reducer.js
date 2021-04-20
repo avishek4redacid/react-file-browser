@@ -1,7 +1,7 @@
 // default reducer
 // Note: You can remove this reducer and create your own reducer
 
-import { SET_DATA, SET_LOCATION, CREATE_FOLDER } from '../actions';
+import { SET_DATA, SET_LOCATION, CREATE_FOLDER, DELETE_FOLDER } from '../actions';
 
 
 const initialState = {
@@ -27,6 +27,9 @@ export default (state = initialState, action) => {
             return setLocation(state, state.data, action);
         case CREATE_FOLDER:
             var updatedData = createFolderUtil(action.payload.currLocationId, [], action.payload.name, state.data)
+            return setLocation(state, updatedData, { payload: action.payload.currLocationId });
+        case DELETE_FOLDER:
+            var updatedData = deleteFolderUtil(action.payload.currLocationId, [], action.payload.id, state.data)
             return setLocation(state, updatedData, { payload: action.payload.currLocationId });
         default:
             return state;
@@ -70,7 +73,7 @@ let setLocation = (state, data, action) => {
 let createFolderUtil = (locationId, locationArr, name, data) => {
     var currId = locationArr.join(".");
     if (currId === locationId || (currId === "" && locationId === null)) {
-        data.children.push({ id: currId + data.children.length.toString(), name, type: 'folder', children: [] });
+        data.children.push({ id: currId + "." + data.children.length.toString(), name, type: 'folder', children: [] });
         return data;
     }
 
@@ -83,6 +86,27 @@ let createFolderUtil = (locationId, locationArr, name, data) => {
         let tempLocationArr = [...locationArr];
         tempLocationArr.push(i);
         return createFolderUtil(locationId, tempLocationArr, name, child);
+    });
+    return updatedData;
+}
+
+let deleteFolderUtil = (locationId, locationArr, folderId, data) => {
+    var currId = locationArr.join(".");
+    if (currId === locationId || (currId === "" && locationId === null)) {
+        let idx = data.children.findIndex(curr => curr.id === folderId)
+
+        data.children.splice(idx, 1);
+    }
+
+    if (data.type === 'file') {
+        return data;
+    }
+
+    var updatedData = data;
+    updatedData.children = data.children.map((child, i) => {
+        let tempLocationArr = [...locationArr];
+        tempLocationArr.push(i);
+        return deleteFolderUtil(locationId, tempLocationArr, folderId, child);
     });
     return updatedData;
 }

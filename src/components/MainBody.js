@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import {
   FolderAddFilled, DownOutlined, UnorderedListOutlined, FolderFilled, FileFilled
+  , DeleteOutlined
 } from '@ant-design/icons';
 
 import { Modal, Input } from 'antd';
@@ -51,9 +52,10 @@ function MainBody(props) {
         <table style={{ width: '100%' }}>
           {items.map(({ id, name, type }) => (
             <tr className="tab-row item" onDoubleClick={() => props.setLocation(id)}>
-              <td style={{ width: '33%' }}>{type === 'folder' ? <FolderFilled /> : <FileFilled />} {name}</td>
-              <td style={{ width: '33%' }}>-</td>
-              <td style={{ width: '33%' }}>Apr 4, 2021, 3.36 PM</td>
+              <td style={{ width: '25%' }}>{type === 'folder' ? <FolderFilled /> : <FileFilled />} {name}</td>
+              <td style={{ width: '25%' }}>-</td>
+              <td style={{ width: '25%' }}>Apr 4, 2021, 3.36 PM</td>
+              <td style={{ width: '25%' }}><span onClick={() => props.deleteFolder({ id, currLocationId })}><DeleteOutlined /></span></td>
             </tr>
           ))}
 

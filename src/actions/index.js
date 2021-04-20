@@ -2,6 +2,7 @@ export const SET_DATA = 'fetch_data';
 export const ADD_MEMBER = 'add_member';
 export const SET_LOCATION = 'set_location'
 export const CREATE_FOLDER = 'create_folder'
+export const DELETE_FOLDER = 'delete_folder'
 
 // default function to display redux action format
 export function setData(data) {
@@ -26,6 +27,14 @@ export function createFolder(data) {
     // action object format being return to a reducer
     return {
         type: CREATE_FOLDER,
+        payload: data,
+    }
+}
+
+export function deleteFolder(data) {
+    // action object format being return to a reducer
+    return {
+        type: DELETE_FOLDER,
         payload: data,
     }
 }
